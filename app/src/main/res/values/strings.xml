@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Karthik\'s GUTS</string>
+    <string name="crime_title_hint">The farts are killing my soul.</string>
+    <string name="crime_title_label">Karthik ate cheese while being lactose intolerant.</string>
+    <string name="crime_details_label">We couldn\'t stop him.</string>
+    <string name="crime_solved_label">We already know it was you.</string>
+</resources>
