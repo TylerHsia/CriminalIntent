@@ -67,11 +67,8 @@ public class CrimeListFragment extends Fragment {
             mTitleTextView.setText(mCrime.getTitle());
             Date date = mCrime.getDate();
 
-            //mDateTextView.setText(mCrime.getDate().toString());
+            //use android.text.format.DateFormat.format to make the date format in day, month day of month, year.
             mDateTextView.setText(android.text.format.DateFormat.format("EEEE, MMM dd, yyyy", date));
-            //SimpleDateFormat simpleDateFormat = new SimpleDateFormat("EEEE dd MMMMM yyyy HH:mm:ss.SSSZ EEEEE, MMM dd, yyyy");
-            //String dateString = simpleDateFormat.format(date);
-            //mDateTextView.setText(dateString);
             mSolvedImageView.setVisibility(crime.isSolved() ? View.VISIBLE : View.GONE);
         }
 
