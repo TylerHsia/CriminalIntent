@@ -15,6 +15,9 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class CrimeListFragment extends Fragment {
@@ -62,7 +65,13 @@ public class CrimeListFragment extends Fragment {
         public void bind(Crime crime){
             mCrime = crime;
             mTitleTextView.setText(mCrime.getTitle());
-            mDateTextView.setText(mCrime.getDate().toString());
+            Date date = mCrime.getDate();
+
+            //mDateTextView.setText(mCrime.getDate().toString());
+            mDateTextView.setText(android.text.format.DateFormat.format("EEEE, MMM dd, yyyy", date));
+            //SimpleDateFormat simpleDateFormat = new SimpleDateFormat("EEEE dd MMMMM yyyy HH:mm:ss.SSSZ EEEEE, MMM dd, yyyy");
+            //String dateString = simpleDateFormat.format(date);
+            //mDateTextView.setText(dateString);
             mSolvedImageView.setVisibility(crime.isSolved() ? View.VISIBLE : View.GONE);
         }
 
@@ -84,7 +93,6 @@ public class CrimeListFragment extends Fragment {
         @Override
         public CrimeHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
             LayoutInflater layoutInflater = LayoutInflater.from(getActivity());
-
             return new CrimeHolder(layoutInflater, parent);
         }
 
