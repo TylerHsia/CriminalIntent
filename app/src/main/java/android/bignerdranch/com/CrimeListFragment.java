@@ -16,12 +16,15 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class CrimeListFragment extends Fragment {
 
     private RecyclerView mCrimeRecyclerView;
     private CrimeAdapter mAdapter;
+    private UUID UUIDPositionClicked;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
@@ -51,7 +54,11 @@ public class CrimeListFragment extends Fragment {
             mCrimeRecyclerView.setAdapter(mAdapter);
         }
         else{
-            mAdapter.notifyDataSetChanged();
+            CrimeListFragment test = new CrimeListFragment();
+            //find the position
+            int position = mAdapter.getPosition();
+            //notify that this position was changed
+            mAdapter.notifyItemChanged(position);
         }
     }
 
@@ -80,7 +87,9 @@ public class CrimeListFragment extends Fragment {
 
         @Override
         public void onClick(View v){
+
             Intent intent = CrimeActivity.newIntent(getActivity(), mCrime.getId());
+            UUIDPositionClicked = mCrime.getId();
             startActivity(intent);
         }
     }
@@ -110,6 +119,19 @@ public class CrimeListFragment extends Fragment {
         @Override
         public int getItemCount() {
             return mCrimes.size();
+        }
+
+
+        //method to find the position of agiven crime in mCrimes
+        public int getPosition(){
+            int position = 0;
+            for (Crime crime : mCrimes){
+                if(crime.getId().equals(UUIDPositionClicked)){
+                    break;
+                }
+                position++;
+            }
+            return position;
         }
     }
 }
